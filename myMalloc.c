@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define MEM_SIZE 25000 - 1
-#define HEAD_SIZE 8 //sizeof(struct head)
+#include "myMalloc.h"
+
 
 // char array to b used as memory pool, here char array is used because char is one byte
 //  so individual char can represent individual bytes 
@@ -131,8 +131,8 @@ void printMemoryBlocks(){
         printf("SIZE           ---------------------> %d\n",block->size);
         printf("START LOCATION ---------------------> %p\n",(void*)block + HEAD_SIZE);
         printf("END LOCATION   ---------------------> %p\n",(void*)block + HEAD_SIZE + block->size - 1);
-        printf("START LOCATION (in mem_pool array)--> %d\n",(void*)block + HEAD_SIZE - (void*)mem_pool);
-        printf("END LOCATION   (in mem_pool array)--> %d\n",(void*)block + HEAD_SIZE + block->size - 1 - (void*)mem_pool);
+        printf("START LOCATION (in mem_pool array)--> %d\n",(int)((void*)block + HEAD_SIZE - (void*)mem_pool));
+        printf("END LOCATION   (in mem_pool array)--> %d\n",(int)((void*)block + HEAD_SIZE + block->size - 1 - (void*)mem_pool));
 
         printf("\n");
 
@@ -143,32 +143,5 @@ void printMemoryBlocks(){
     printf("----------------------------------------------------------------\n");
 }
 
-int main(){
-
-    char *test1 = MyMalloc(20000);
-    // printMemoryBlocks();
-
-    char *test2 = MyMalloc(4000);
-    // printMemoryBlocks();
-
-    char *test3 = MyMalloc(900);
-    // printMemoryBlocks();
-
-    char *test4 = MyMalloc(58);
-    printMemoryBlocks();
-
-    // MyFree(test1);
-    // printMemoryBlocks();
-
-    MyFree(test2);
-    printMemoryBlocks();
-    
-    // MyFree(test4);
-    // printMemoryBlocks();
-
-    // MyFree(test3);
-    // printMemoryBlocks();
-
-}
 
 
