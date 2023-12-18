@@ -12,6 +12,17 @@ This repository contains a simple implementation of a memory allocator in C, pro
 
 ## Usage
 
+### Clone repo
+```bash
+    git clone https://github.com/haathim/mymalloc.git
+    cd mymalloc
+```
+
+### Build & Run
+```bash
+    make
+    ./main
+```
 
 ## Notes
 
